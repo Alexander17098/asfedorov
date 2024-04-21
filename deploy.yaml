@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kuber-hf
+  labels:
+    app: kuber-hf
+spec:
+  replicas: 2
+  minReadySeconds: 10
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      env: fedorov
+  template:
+    metadata:
+      labels:
+        env: fedorov
+    spec:
+      containers:
+      - name: kube-fedorov
+        image: alexander1709/fedorov:test10
+        ports:
+        - containerPort: 8000     

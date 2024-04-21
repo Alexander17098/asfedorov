@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: kube-fedorov
+  labels:
+    app: kube-fedorov
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      env: fedorov
+  template:
+    metadata:
+      labels:
+        env: fedorov
+    spec:
+      containers:
+      - name: kube-fedorov
+        image: alexander1709/fedorov:test10
+                 
